@@ -21,9 +21,8 @@ class NotificationData {
 //  String? message;
   List<Datum>? data;
 
-  factory NotificationData.fromJson(Map<String, dynamic> json) =>
-      NotificationData(
-        data: List<Datum>.from(json["Data"].map((x) => Datum.fromJson(x))),
+  factory NotificationData.fromJson(json) => NotificationData(
+        data: List<Datum>.from(json.map((x) => Datum.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {

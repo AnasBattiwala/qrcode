@@ -27,10 +27,11 @@ class _UserNotifcationListState extends State<UserNotifcationList> {
 //        ),
         title: Text(
           widget.list!.title!,
-          style: TextStyle(color: Colors.white),
+          // style: TextStyle(color: Colors.white),
         ),
-        subtitle:
-            Text(widget.list!.message!, style: TextStyle(color: Colors.white)),
+        subtitle: Text(
+          widget.list!.message!,
+        ),
       ),
     );
   }

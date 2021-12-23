@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:qrcode/model/notify.dart';
-import 'package:qrcode/model/notify.dart';
 import 'package:qrcode/services/api.dart';
 import 'package:qrcode/utils/app_colors.dart';
 import 'package:qrcode/widgets/user_notification_list.dart';
@@ -26,6 +25,7 @@ class _UserNotificationState extends State<UserNotification> {
     });
 
     if (response != null) {
+      print(response.data);
       if (response.data["IsStatus"]) {
         print(response.data);
         setState(() {
