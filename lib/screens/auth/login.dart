@@ -139,9 +139,9 @@ class _LoginState extends State<Login> {
                                   print(response.data);
                                   if (response.data['IsStatus']) {
                                     await storage.write(
-                                        key: "qridcode",
-                                        value: response?.data["Data"][0]
-                                            ["QRIDCode"]);
+                                      key: "qridcode",
+                                      value: qridcode,
+                                    );
                                     Fluttertoast.showToast(
                                         msg: response.data['Message']);
                                     response = await APICall.post(
@@ -151,6 +151,7 @@ class _LoginState extends State<Login> {
                                           .instance
                                           .getToken(),
                                     });
+                                    print(response.data);
                                   }
                                   Navigator.pop(context);
                                   Navigator.of(context).pushReplacement(
