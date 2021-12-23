@@ -56,12 +56,32 @@ class _UserNotificationState extends State<UserNotification> {
       ),
       child: Column(
         children: [
-          Text(
-            "Notifications",
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 28,
-                color: AppColors.primaryColor),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                "Notifications",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 28,
+                    color: AppColors.primaryColor),
+              ),
+              TextButton(
+                  child: Text(
+                    "Clear",
+                    style: TextStyle(
+                        color: AppColors.primaryColor,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  onPressed: () async {
+                    Response response =
+                        await APICall.post("ClearNotification", {
+                      "QrId": qridcode,
+                    });
+                    print(response.data);
+                    getData();
+                  }),
+            ],
           ),
           SizedBox(
             height: 15,

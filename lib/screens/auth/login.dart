@@ -144,6 +144,13 @@ class _LoginState extends State<Login> {
                                             ["QRIDCode"]);
                                     Fluttertoast.showToast(
                                         msg: response.data['Message']);
+                                    response = await APICall.post(
+                                        "AddMobileAppToken", {
+                                      "Qrid": qridcode,
+                                      "TokenNo": await FirebaseMessaging
+                                          .instance
+                                          .getToken(),
+                                    });
                                   }
                                   Navigator.pop(context);
                                   Navigator.of(context).pushReplacement(
