@@ -3,6 +3,8 @@ import 'package:qrcode/utils/app_colors.dart';
 import 'home.dart';
 import 'profile.dart';
 import 'user_notification.dart';
+//import 'package:flutter/foundation.dart' show TargetPlatform;
+import 'dart:io' show TargetPlatform;
 
 class BottomNavigation extends StatefulWidget {
   int index;
@@ -16,6 +18,7 @@ class BottomNavigation extends StatefulWidget {
 class _BottomNavigationState extends State<BottomNavigation> {
   final _pages = [Home(), UserNotification(), Profile()];
   int _selectedIndex = 0;
+
   @override
   void initState() {
     _selectedIndex = widget.index;

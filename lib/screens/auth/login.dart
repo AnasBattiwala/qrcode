@@ -26,6 +26,9 @@ class _LoginState extends State<Login> {
       String username = _usernameController.text.trim();
       String password = _passwordController.text.trim();
       BuildContext? loadContext;
+      var platform;
+      var deviceType = 1;
+
       print('login');
       showDialog(
           context: context,
@@ -131,6 +134,10 @@ class _LoginState extends State<Login> {
                               ),
                               onPressed: () async {
                                 if (key.currentState!.validate()) {
+                                  platform = Theme.of(context).platform;
+                                  if (platform == TargetPlatform.iOS) {
+                                    deviceType = 2;
+                                  }
                                   Response response =
                                       await APICall.post("changepassword", {
                                     "QrId": qridcode,
@@ -144,12 +151,14 @@ class _LoginState extends State<Login> {
                                     );
                                     Fluttertoast.showToast(
                                         msg: response.data['Message']);
+//                                        msg: response.data['Message']);
                                     response = await APICall.post(
                                         "AddMobileAppToken", {
                                       "Qrid": qridcode,
                                       "TokenNo": await FirebaseMessaging
                                           .instance
                                           .getToken(),
+                                      "DeviceType": deviceType,
                                     });
                                     print(response.data);
                                   }
@@ -168,6 +177,10 @@ class _LoginState extends State<Login> {
                 );
               });
         } else {
+          platform = Theme.of(context).platform;
+          if (platform == TargetPlatform.iOS) {
+            deviceType = 2;
+          }
           Fluttertoast.showToast(msg: "Login Successful");
 //          Clipboard.setData(
 //              ClipboardData(text: await FirebaseMessaging.instance.getToken()));
@@ -175,6 +188,7 @@ class _LoginState extends State<Login> {
           Response? response = await APICall.post("AddMobileAppToken", {
             "Qrid": qridcode,
             "TokenNo": await FirebaseMessaging.instance.getToken(),
+            "DeviceType": deviceType,
           });
 
           Navigator.pop(loadContext!);
@@ -320,7 +334,7 @@ class _LoginState extends State<Login> {
                                                     "Forgotpassword", {
                                               "UserName": fgtusername.text,
                                             });
-//                                            print(response?.data);
+                                            print(response?.data);
                                             if (response?.data['IsStatus']) {
                                               Fluttertoast.showToast(
                                                   msg: response
