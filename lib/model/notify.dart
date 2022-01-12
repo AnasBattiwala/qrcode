@@ -37,6 +37,7 @@ class Datum {
     this.message,
     this.qrid,
     this.appToken,
+    this.url,
   });
 
   DateTime? notificationDate;
@@ -44,6 +45,7 @@ class Datum {
   String? message;
   String? qrid;
   String? appToken;
+  String? url;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         notificationDate: DateTime.parse(json["NotificationDate"]),
@@ -51,6 +53,7 @@ class Datum {
         message: json["Message"],
         qrid: json["QRID"],
         appToken: json["AppToken"],
+        url: json["NotiURL"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -59,5 +62,6 @@ class Datum {
         "Message": message,
         "QRID": qrid,
         "AppToken": appToken,
+        "NotiURL": url,
       };
 }

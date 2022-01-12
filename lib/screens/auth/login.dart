@@ -339,8 +339,12 @@ class _LoginState extends State<Login> {
                                               Fluttertoast.showToast(
                                                   msg: response
                                                       ?.data['Message']);
+                                              Navigator.pop(context);
+                                            } else {
+                                              Fluttertoast.showToast(
+                                                  msg: response
+                                                      ?.data['Message']);
                                             }
-                                            Navigator.pop(context);
                                           }
                                         },
                                       ),

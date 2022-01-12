@@ -25,7 +25,7 @@ class _UserNotificationState extends State<UserNotification> {
     });
 
     if (response != null) {
-      print(response.data);
+//      print(response.data);
       if (response.data["IsStatus"]) {
         print(response.data);
         setState(() {

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:qrcode/model/notify.dart';
 import 'package:qrcode/utils/app_colors.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class UserNotifcationList extends StatefulWidget {
-  final Datum? list;
+  Datum? list;
   UserNotifcationList(this.list);
   @override
   _UserNotifcationListState createState() => _UserNotifcationListState();
@@ -32,6 +33,24 @@ class _UserNotifcationListState extends State<UserNotifcationList> {
         subtitle: Text(
           widget.list!.message!,
         ),
+        trailing: widget.list!.url != null
+            ? ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                  shape: StadiumBorder(),
+                ),
+                child: Text(
+                  "Open Link",
+                  style: TextStyle(
+                      letterSpacing: 1, fontSize: 14, color: Colors.black),
+                ),
+                onPressed: () async {
+                  print(widget.list!.url!);
+                  if (!await launch(widget.list!.url!))
+                    throw 'Could not launch $widget.list!.url!';
+                },
+              )
+            : null,
       ),
     );
   }
