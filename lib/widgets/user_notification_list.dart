@@ -33,8 +33,9 @@ class _UserNotifcationListState extends State<UserNotifcationList> {
         subtitle: Text(
           widget.list!.message!,
         ),
-        trailing: widget.list!.url != null
-            ? ElevatedButton(
+        trailing: widget.list!.url!.isEmpty
+            ? Text('')
+            : ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                   shape: StadiumBorder(),
@@ -49,8 +50,7 @@ class _UserNotifcationListState extends State<UserNotifcationList> {
                   if (!await launch(widget.list!.url!))
                     throw 'Could not launch $widget.list!.url!';
                 },
-              )
-            : null,
+              ),
       ),
     );
   }
